@@ -1,5 +1,3 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 -- -- TODO: Setup Excluded Flolders
 -- local dartExcludedFolders = {
 --   vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
