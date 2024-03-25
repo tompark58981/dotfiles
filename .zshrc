@@ -161,23 +161,31 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 uni() {
-    if [[ "$1" == "notes" ]]
-    then
+    if [[ "$1" == "notes" ]] then
       cd ~/Documents/'Obsidian Vault'/hkust/
-    # elif [[ "$1" == "urop"]]
-    # then
-    #   cd ~/Desktop/HKUST/UROP/
-    elif [[ "$1" != "" ]] # or better, if [ -n "$1" ]
-    then
+    elif [[ "$1" == "urop" ]] then
+      cd ~/Desktop/HKUST/UROP/
+    elif [[ -n "$1" ]] then
       cd ~/Desktop/HKUST/Lectures/'Year 2'/'Semester 2'/$1/
     else
       cd ~/Desktop/HKUST/Lectures/'Year 2'/'Semester 2'
     fi
 }
 
+icloud() {
+  cd ~/Library/Mobile\ Documents/com\~apple\~CloudDocs
+}
+
+pg() {
+    if [[ -n "$1" ]] then
+      cd ~/Desktop/Hucode/Playground/$1/
+    else
+      cd ~/Desktop/HuCode/Playground/
+    fi
+}
+
 alias oldvim="vim" 
 alias vi="nvim" 
-alias vim="nvim"
 alias config="/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME/"
 alias cfv="vi ~/.config/nvim"
 alias cft="vi ~/.tmux.conf"
