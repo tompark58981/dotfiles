@@ -1,22 +1,23 @@
 If:
-  PathMatch: .*\.cpp
+  PathMatch: .*\.(cpp|h)
 
 Diagnostics:
   UnusedIncludes: None 
   MissingIncludes: None
 
 CompileFlags:
-  # Add: [-std=c++20]
   Add: 
-  - "-std=c++11"
+  # - "-std=c++11"
+  - "-std=c++20"
+  - "-I/usr/local/include/node"
   - "-I/usr/local/include"
+  - "DLIBRARY_IMPL]"
+  - "-I/opt/homebrew/lib/node_modules/node-gyp/node_modules/nan"
 
----
 
 If:
   PathMatch: .*\.c
 
 CompileFlags:
   Add: [-std=c17]
-
 

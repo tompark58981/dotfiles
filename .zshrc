@@ -94,12 +94,13 @@ _comp_options+=(globdots)
 
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -158,17 +159,18 @@ source $ZSH/oh-my-zsh.sh
 
 
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 uni() {
     if [[ "$1" == "notes" ]] then
       cd ~/Documents/'Obsidian Vault'/hkust/
     elif [[ "$1" == "urop" ]] then
       cd ~/Desktop/HKUST/UROP/
+    elif [[ "$1" == "kriss" ]] then
+      cd ~/Desktop/HKUST/Societies/KRISS/
     elif [[ -n "$1" ]] then
       cd ~/Desktop/HKUST/Lectures/'Year 2'/'Semester 2'/$1/
     else
-      cd ~/Desktop/HKUST/Lectures/'Year 2'/'Semester 2'
+      cd ~/Desktop/HKUST/Lectures/'Year 3'/'Semester 1'
     fi
 }
 
@@ -191,6 +193,8 @@ alias cfv="vi ~/.config/nvim"
 alias cft="vi ~/.tmux.conf"
 alias cfz="vi ~/.zshrc"
 alias cf="cd ~/.config"
+alias comp2012="~/Desktop/HKUST/Lectures/'Year 2'/'Semester 2'/COMP2012/"
+export CXXFLAGS="-std=c++11"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
