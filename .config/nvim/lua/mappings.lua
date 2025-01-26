@@ -37,6 +37,14 @@ map("n", "<leader>br", function()
   require("nvchad.tabufline").closeBufs_at_direction "right"
 end, { desc = "close buffers on right" })
 
+map("n", "<leader>b[", function()
+  require("nvchad.tabufline").move_buf(-1)
+end, { desc = "move buffer to left" })
+
+map("n", "<leader>b]", function()
+  require("nvchad.tabufline").move_buf(1)
+end, { desc = "move buffer to right" })
+
 map("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { silent = true })
 
 -- nvchad.term
@@ -54,4 +62,14 @@ map({ "n", "t" }, "<c-_>", function()
   }
 end, { desc = "terminal toggle floating term" })
 
+-- buffer
+map("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<cr>", { silent = true })
+map("n", "<leader>|", "<cmd>vs<cr>", { silent = true })
+map("n", "<leader>-", "<cmd>split<cr>", { silent = true })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- copilot
+map("i", "<C-e>", 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
