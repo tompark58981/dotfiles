@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -7,6 +14,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export DEFAULT_USER="$(whoami)"
 export PATH=~/Dev/flutter/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
+export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
 
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -15,7 +23,7 @@ eval "$(pyenv init -)"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,8 +100,8 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/oh-my-zsh.sh
-
 
 # User configuration
 
@@ -123,7 +131,7 @@ export LANG=en_US.UTF-8
 
 # # vi mode
 # bindkey -v
-# export KEYTIMEOUT=1
+# export KEYTIMEOUT=20
 #
 # # Use vim keys in tab complete menu:
 # bindkey -M menuselect 'h' vi-backward-char
@@ -144,21 +152,19 @@ export LANG=en_US.UTF-8
 #     echo -ne '\e[6 q'
 #   fi
 # }
-#
+
 # zle -N zle-keymap-select
 # zle-line-init() {
 #     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
 #     echo -ne "\e[6 q"
 # }
 #
-# bindkey -M viins 'jk' vi-cmd-mode
-#
 # zle -N zle-line-init
 # echo -ne '\e[6 q' # Use beam shape cursor on startup.
 # preexec() { echo -ne '\e[6 q' ;} # Use beam shape cursor for each new prompt.
 
-
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 uni() {
     if [[ "$1" == "notes" ]] then
@@ -186,6 +192,10 @@ pg() {
     fi
 }
 
+cdv() {
+  z "$1" && vi "$2"
+}
+
 alias oldvim="vim" 
 alias vi="nvim" 
 alias config="/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME/"
@@ -194,7 +204,7 @@ alias cft="vi ~/.tmux.conf"
 alias cfz="vi ~/.zshrc"
 alias cf="cd ~/.config"
 alias comp2012="~/Desktop/HKUST/Lectures/'Year 2'/'Semester 2'/COMP2012/"
-export CXXFLAGS="-std=c++11"
+alias cd="z"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -218,3 +228,11 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(zoxide init zsh)"
+
+. "$HOME/.local/bin/env"
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

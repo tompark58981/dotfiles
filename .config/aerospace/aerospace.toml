@@ -9,7 +9,8 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -21,7 +22,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 20
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -106,6 +107,7 @@ alt-shift-l = 'move right'
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
+alt-equal = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -127,6 +129,7 @@ alt-f = 'workspace F'
 alt-g = 'workspace G'
 alt-i = 'workspace I'
 alt-n = 'workspace N'
+alt-m = 'workspace M'
 alt-o = 'workspace O'
 alt-p = 'workspace P'
 alt-q = 'workspace Q'
@@ -160,6 +163,7 @@ alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
 alt-shift-i = 'move-node-to-workspace I'
 alt-shift-n = 'move-node-to-workspace N'
+alt-shift-m = 'move-node-to-workspace M'
 alt-shift-o = 'move-node-to-workspace O'
 alt-shift-p = 'move-node-to-workspace P'
 alt-shift-q = 'move-node-to-workspace Q'
@@ -181,14 +185,13 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
-alt-shift-m = 'fullscreen'
-
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+m = ['fullscreen', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -221,7 +224,7 @@ if.app-id = 'com.apple.Safari.WebApp.4E88F2A9-D43F-4B94-8084-5E3A588F86F7'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.Outlookpk'
+if.app-id = 'com.microsoft.Outlook'
 run = 'move-node-to-workspace E'
 
 [[on-window-detected]]
@@ -230,9 +233,40 @@ run = 'move-node-to-workspace N'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace N'
+run = 'move-node-to-workspace O'
+
+[[on-window-detected]]
+if.app-id = 'com.nordvpn.macos'
+run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace C'
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = 'move-node-to-workspace 5'
 
 # Set floating windows
+
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = 'layout floating'
+
+# [[on-window-detected]]
+# if.app-id = 'com.openai.chat'
+# run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.undefined.mate.mac'
+run = 'layout floating'
+
+
