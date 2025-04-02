@@ -73,3 +73,24 @@ map("i", "<C-e>", 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false,
 })
+
+-- aider
+map("n", "<leader>Ao", ":AiderOpen --no-auto-commits<CR>")
+
+-- terminal
+map("t", "jk", [[<C-\><C-n>]])
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    -- Use buffer-local terminal mode mappings
+    local function tmap(lhs, rhs)
+      vim.api.nvim_buf_set_keymap(0, "t", lhs, rhs, { noremap = true, silent = true })
+    end
+
+    tmap("<C-h>", [[<C-\><C-n><cmd>TmuxNavigateLeft<CR>]])
+    tmap("<C-j>", [[<C-\><C-n><cmd>TmuxNavigateDown<CR>]])
+    tmap("<C-k>", [[<C-\><C-n><cmd>TmuxNavigateUp<CR>]])
+    tmap("<C-l>", [[<C-\><C-n><cmd>TmuxNavigateRight<CR>]])
+  end,
+})
