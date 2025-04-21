@@ -40,9 +40,8 @@ source "$ITEM_DIR/music.sh"
 
 # Brackets
 sketchybar \
---add bracket left_side logo yabai '/space\..*/' front_app \
+--add bracket left_side logo front_app \
         --set left_side "${bracket_defaults[@]}" \
-\
 --add bracket status_icons spacer transmission messages mail weather volume_icon volume battery wifi date clock dnd \
         --set status_icons "${bracket_defaults[@]}"
 

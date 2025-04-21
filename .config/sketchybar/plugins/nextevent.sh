@@ -5,17 +5,14 @@ render_item() {
 }
 
 render_popup() {
-
-  if which "icalBuddy" &>/dev/null; then 
-    input=$(/opt/homebrew/bin/icalBuddy -ec 'Found in Natural Language,CCSF' -npn -nc -iep 'datetime,title' -po 'datetime,title' -eed -ea -n -li 4 -ps '|: |' -b '' eventsToday)
+  if which "icalBuddy" &>/dev/null; then
+    input=$(/opt/homebrew/bin/icalBuddy -ec 'Found in Natural Language,CCSF' -npn -nc -iep 'datetime,title' -po 'datetime,title' -eed -ea -n -li 4 -ps '|: |' -b '' eventsToday 2>/dev/null)
     currentTime=$(date '+%I:%M %p')
 
-    # echo "Debug: $NAME #11 $input"
-
     if [ -n "$input" ]; then
-      IFS='^' read -ra events <<< "$input"
+      IFS='^' read -ra events <<<"$input"
       for anEvent in "${events[@]}"; do
-        IFS='^' read -ra eventItems <<< "$anEvent"
+        IFS='^' read -ra eventItems <<<"$anEvent"
         eventTime=${eventItems[0]}
         if [ "$eventTime" '>' "$currentTime" ]; then
           theEvent="$anEvent"
@@ -29,13 +26,11 @@ render_popup() {
     theEvent="Please install icalBuddy → brew install ical-buddy."
   fi
 
-
   sketchybar --set clock.details label="$theEvent" click_script="sketchybar --set $NAME popup.drawing=off" >/dev/null
 }
 
 update() {
   render_item
-  render_popup
 }
 
 popup() {
@@ -48,6 +43,7 @@ case "$SENDER" in
   ;;
 "mouse.entered")
   popup on
+  render_popup
   ;;
 "mouse.exited" | "mouse.exited.global")
   popup off
