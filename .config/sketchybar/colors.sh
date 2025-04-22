@@ -51,7 +51,7 @@ export TEAL=0xff94e2d5       #94e2d5
 export CYAN=0xff89DDFF       #89DDFF
 export BLUE=0xff82aaff       #82aaff
 export OSBLUE=0xff0259D1     #0259D1
-export YELLOW=0xffffcb6b     #ffcb6b
+export YELLOW=0xfff9e2af     #f9e2af
 export ORANGE=0xfff78c6c     #f78c6c
 export PEACH=0xfffab387      #fab387
 export MAGENTA=0xffab47bc    #ab47bc
@@ -60,6 +60,9 @@ export GREY=0xff676e95       #676e95
 export GREY_50=0x80676e95    #676e95
 export LIGHT_GREY=0xffa6accd #a6accd
 export ROSEWATER=0xfff5e0dc  #f5e0dc
+export LAVENDER=0xffb4befe   #b4befe
+export MAUVE=0xffcba6f7      #cba6f7
+export FLAMINGO=0xfff2cdcd   #f2cdcd
 export TRANSPARENT=0x00000000
 
 # General bar colors
@@ -69,7 +72,7 @@ export BAR_BORDER_COLOR=0xff2b2a3e #2b2a3e
 export ICON_COLOR=$WHITE
 export ICON_COLOR_INACTIVE=$GREY
 export LABEL_COLOR=$WHITE_75
-export HIGHLIGHT=$PEACH
+export HIGHLIGHT=$MAUVE
 export POPUP_BACKGROUND_COLOR=$DARK_GREY
 export POPUP_BORDER_COLOR=$TRANSPARENT
 export SHADOW_COLOR=$BLACK

@@ -5,7 +5,6 @@ POPUP_CLICK_SCRIPT="sketchybar --set wifi popup.drawing=toggle"
 
 source "$HOME/.config/sketchybar/colors.sh" # Loads defined colors
 
-CURRENT_WIFI="$(ipconfig getsummary $(networksetup -listallhardwareports | awk '/Hardware Port: Wi-Fi/{getline; print $2}') | awk -F ' SSID : ' '/ SSID : / {print $2}')"
 IP_ADDRESS="$(ipconfig getifaddr en0)"
 SSID="$(ipconfig getsummary $(networksetup -listallhardwareports | awk '/Hardware Port: Wi-Fi/{getline; print $2}') | awk -F ' SSID : ' '/ SSID : / {print $2}')"
 # CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"

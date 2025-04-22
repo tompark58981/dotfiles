@@ -7,6 +7,8 @@ update() {
 
   sid=${NAME#space.}
 
+  WIN_CNT=$(aerospace list-windows --workspace $sid --count)
+
   if [ "$sid" = "$FOCUSED_WORKSPACE" ]; then
     COLOR=$HIGHLIGHT
     OFFSET=-12
@@ -23,32 +25,29 @@ update() {
       label.highlight=$SET_HIGHLIGHT \
       background.color=$HIGHLIGHT \
       background.y_offset=$OFFSET
-  elif [ "$SENDER" = "aerospace_workspace_switch" ]; then
-    WIN_CNT=$(aerospace list-windows --workspace $sid --count)
-
-    if [ $WIN_CNT -gt 0 ]; then
-      sketchybar --set $NAME drawing=on
-    else
-      sketchybar --set $NAME drawing=off
-    fi
-
-    source "$CONFIG_DIR/plugins/icon_map.sh"
-
-    apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
-
-    icon_strip=" "
-    if [ -n "$apps" ]; then
-      while IFS= read -r app; do
-        __icon_map "$app"
-        icon_strip+=" $icon_result"
-      done <<<"$apps"
-    else
-      icon_strip=" —"
-    fi
-
-    sketchybar --set space.$sid label="$icon_strip"
   fi
 
+  if [[ $WIN_CNT -gt 0 || $sid = $FOCUSED_WORKSPACE ]]; then
+    sketchybar --set $NAME drawing=on
+  else
+    sketchybar --set $NAME drawing=off
+  fi
+
+  source "$CONFIG_DIR/plugins/icon_map.sh"
+
+  apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+
+  icon_strip=" "
+  if [ -n "$apps" ]; then
+    while IFS= read -r app; do
+      __icon_map "$app"
+      icon_strip+=" $icon_result"
+    done <<<"$apps"
+  else
+    icon_strip=" —"
+  fi
+
+  sketchybar --set space.$sid label="$icon_strip"
 }
 
 set_space_label() {

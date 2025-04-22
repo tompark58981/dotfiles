@@ -13,5 +13,5 @@ transmission=(
   click_script="open -a /Applications/Transmission.app"
 )
 
-sketchybar --add item transmission right       \
-           --set      transmission "${transmission[@]}"
+sketchybar --add item transmission right \
+  --set transmission "${transmission[@]}"

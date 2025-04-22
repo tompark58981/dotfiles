@@ -3,10 +3,11 @@
 front_app=(
             script="$PLUGIN_DIR/front_app.sh"
             icon=􀆊
-            icon.color=$RED
+            icon.color=$FLAMINGO
             padding_left=0
             icon.padding_left=0
             label.padding_right=$PADDINGS
+            label.color=$FLAMINGO
             label.font.style=Bold
             icon.background.image.scale=0.5
 )
